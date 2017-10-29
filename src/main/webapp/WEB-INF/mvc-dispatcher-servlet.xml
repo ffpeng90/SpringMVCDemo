@@ -20,6 +20,36 @@
     <!-- 开启注解 -->
     <mvc:annotation-driven/>
 
+
+
+    <!--添加freemaker配置bean和解析器-->
+    <bean id="freemarkerConfig"  class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="/WEB-INF/ftl/" />
+        <property name="defaultEncoding" value="utf-8" />
+        <!--<property name="freemarkerSettings">
+            <props>
+                <prop key="template_update_delay">10</prop>
+                <prop key="locale">zh_CN</prop>
+                <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+                <prop key="date_format">yyyy-MM-dd</prop>
+                <prop key="number_format">#.##</prop>
+                <prop key="classic_compatible">true</prop>
+                <prop key="template_exception_handler">com.xxx.web.exception.FreeMarkerExceptionHandler</prop>
+            </props>
+        </property>-->
+    </bean>
+
+    <bean id="freeMarkerViewResolver"  class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"></property>
+        <property name="suffix" value=".ftl" />
+        <property name="contentType" value="text/html;charset=utf-8" />
+        <property name="exposeRequestAttributes" value="true" />
+        <property name="exposeSessionAttributes" value="true" />
+        <property name="exposeSpringMacroHelpers" value="true" />
+        <property name="requestContextAttribute" value="request" />
+        <property name="order" value="1" />
+    </bean>
+
     <!--ViewResolver 视图解析器-->
     <!--用于支持Servlet、JSP视图解析-->
     <bean id="jspViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
